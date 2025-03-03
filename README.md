@@ -1,22 +1,5 @@
 # IEEE Round 2 Submission – Custom Data Structure Implementation
 
-<!--toc:start-->
-
-- [Level 1](#level-1)
-  - [📌 Project Overview](#-project-overview)
-  - [**🚀 Technologies Used**](#-technologies-used)
-  - [**🌟 Features Implemented**](#-features-implemented)
-  - [**🛠️ Setup Instructions**](#%EF%B8%8F-setup-instructions)
-    - [**Prerequisites**](#prerequisites)
-    - [**Installation Steps**](#installation-steps)
-    - [Usage](#usage)
-    - [**Running Tests**](#running-tests)
-  - [**📊 Implementation Details**](#-implementation-details)
-    - [**Data Structures Used**](#data-structures-used)
-    - [**Operations Complexity**](#operations-complexity)
-  - [**🛠️ Code Quality**](#%EF%B8%8F-code-quality)
-  <!--toc:end-->
-
 # Level 1
 
 ## 📌 Project Overview
@@ -89,6 +72,84 @@ pytest
 - **Main Stack (`stack`)**: Stores the actual elements using a list
 - **Auxiliary Deck (`aux`)**: Stores the min and max elements on the extreme left and right side of the deque respectively
 
+### Algorithm
+
+- `push`: Append the element to the end of the `stack`. Update the auxiliary deque:
+
+  - If `x` is smaller than the current minimum, push it to the front.
+  - If `x` is larger than the current maximum, push it to the back.
+  - If `x` equals the current min/max, increment their respective counts.
+
+- `pop`: Remove the element from the top of the `stack`. Update the auxiliary deque:
+
+  - If the popped element was the min/max, decrement its count.
+  - If the count reaches zero, remove it from the deque.
+
+- `top`: Return the last element in `stack` without modifying it.
+
+- `getMin`: Return the first element of `aux`, which represents the current minimum.
+
+- `getMax`: Return the last element of `aux`, which represents the current maximum.
+
+#### Example
+
+Suppose the stack entered is this (pushed from left to right): 9 8 6 9 10
+
+Step-by-step tracking:
+
+1. **Push 9**
+
+   - Stack: `[9]`
+   - Aux: `[(9,1)]` (Min: 9, Max: 9)
+
+2. **Push 8**
+
+   - Stack: `[9, 8]`
+   - Aux: `[(8,1), (9,1)]` (Min: 8, Max: 9)
+
+3. **Push 6**
+
+   - Stack: `[9, 8, 6]`
+   - Aux: `[(6,1), (8,1), (9,1)]` (Min: 6, Max: 9)
+
+4. **Push 9**
+
+   - Stack: `[9, 8, 6, 9]`
+   - Aux: `[(6,1), (8,1), (9,2)]` (Min: 6, Max: 9)
+
+5. **Push 10**
+   - Stack: `[9, 8, 6, 9, 10]`
+   - Aux: `[(6,1), (8,1), (9,2), (10,1)]` (Min: 6, Max: 10)
+
+#### Operations
+
+- `top() -> 10`
+- `getMin() -> 6`
+- `getMax() -> 10`
+
+**Pop Operations:**
+
+- `pop() -> 10`
+
+  - Stack: `[9, 8, 6, 9]`
+  - Aux: `[(6,1), (8,1), (9,2)]` (Min: 6, Max: 9)
+
+- `pop() -> 9`
+
+  - Stack: `[9, 8, 6]`
+  - Aux: `[(6,1), (8,1), (9,1)]` (Min: 6, Max: 9)
+
+- `pop() -> 6`
+
+  - Stack: `[9, 8]`
+  - Aux: `[(8,1), (9,1)]` (Min: 8, Max: 9)
+
+- `pop() -> 8`
+  - Stack: `[9]`
+  - Aux: `[(9,1)]` (Min: 9, Max: 9)
+
+This ensures that all operations, including `getMin()` and `getMax()`, run in **O(1)** time complexity.
+
 ### **Operations Complexity**
 
 | Operation  | Time Complexity | Space Complexity |
@@ -102,6 +163,22 @@ pytest
 ### **Benchmarks**
 
 ![assets/stack_bench.png](assets/bench_stack.png)
+
+#### **Possible Reasons for the Spike:**
+
+1. **Cold Start Effects:**
+
+   - When the stack is small, Python’s memory allocator may need to allocate new memory pages for the list and deque structures.
+   - The first few operations (especially `push`) might trigger additional memory allocations and initialization overhead.
+
+2. **Python's Dynamic List Growth:**
+   - The list backing the stack may need to grow dynamically, and for small sizes, Python's `list` resizing can cause fluctuations in execution time.
+   - Once the list reaches a stable resizing pattern, the execution time becomes more consistent.
+
+#### **Why Does It Stabilize?**
+
+- Once the stack reaches a sufficiently large size, memory allocation and dynamic resizing effects stabilize.
+- Operations stabilize into their **O(1) time complexity** pattern, showing near-constant time performance.
 
 ## **🛠️ Code Quality**
 
