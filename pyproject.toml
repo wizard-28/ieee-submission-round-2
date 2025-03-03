@@ -1,0 +1,40 @@
+[project]
+name = "ieee-submission"
+version = "0.1.0"
+description = "IEEE Round 2 Submission"
+license = "GPL-3.0-or-later"
+authors = [{ name = "Sourajyoti Basak", email = "wiz28@protonmail.com" }]
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+  "typer (>=0.15.2,<0.16.0)",
+  "simple-term-menu (>=1.6.6,<2.0.0)",
+  "rich (>=13.9.4,<14.0.0)",
+]
+
+[tool.poetry]
+packages = [{ include = "ieee_submission", from = "src" }]
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.1.0"
+mypy = "^1.15.0"
+pytest = "^8.3.5"
+ruff = "^0.9.9"
+
+
+[tool.poetry.group.benchmark.dependencies]
+matplotlib = "^3.10.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+show-fixes = true
+fix = true
+
+[tool.mypy]
+disable_error_code = ["import-not-found", "misc"]
+files = "src"
