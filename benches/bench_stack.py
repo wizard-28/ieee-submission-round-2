@@ -91,6 +91,8 @@ plt.plot(stack_sizes, max_times, label="GetMax", marker="d")
 
 plt.xlabel("Stack Size")
 plt.ylabel("Time per Operation (seconds)")
+plt.ticklabel_format(style="plain", axis="y")  # Disable scientific notation on Y-axis
+plt.ticklabel_format(style="plain", axis="x")  # Disable scientific notation on X-axis
 plt.title("Benchmarking Stack Operations")
 plt.legend()
 plt.grid(True, which="both", linestyle="--", linewidth=0.5)
