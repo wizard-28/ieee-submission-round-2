@@ -3,18 +3,18 @@
 <!--toc:start-->
 
 - [Level 1](#level-1)
-  - [📌 Project Overview](#📌-project-overview)
-  - [**🚀 Technologies Used**](#🚀-technologies-used)
-  - [**🌟 Features Implemented**](#🌟-features-implemented)
-  - [**🛠️ Setup Instructions**](#🛠️-setup-instructions)
+  - [📌 Project Overview](#-project-overview)
+  - [**🚀 Technologies Used**](#-technologies-used)
+  - [**🌟 Features Implemented**](#-features-implemented)
+  - [**🛠️ Setup Instructions**](#%EF%B8%8F-setup-instructions)
     - [**Prerequisites**](#prerequisites)
     - [**Installation Steps**](#installation-steps)
     - [Usage](#usage)
     - [**Running Tests**](#running-tests)
-  - [**📊 Implementation Details**](#📊-implementation-details)
+  - [**📊 Implementation Details**](#-implementation-details)
     - [**Data Structures Used**](#data-structures-used)
     - [**Operations Complexity**](#operations-complexity)
-  - [**🛠️ Code Quality**](#🛠️-code-quality)
+  - [**🛠️ Code Quality**](#%EF%B8%8F-code-quality)
   <!--toc:end-->
 
 # Level 1
@@ -98,6 +98,10 @@ pytest
 | `top()`    | **O(1)**        | **O(1)**         |
 | `getMin()` | **O(1)**        | **O(1)**         |
 | `getMax()` | **O(1)**        | **O(1)**         |
+
+### **Benchmarks**
+
+![assets/stack_bench.png](assets/bench_stack.png)
 
 ## **🛠️ Code Quality**
 
