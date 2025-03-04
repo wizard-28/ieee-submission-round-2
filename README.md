@@ -45,8 +45,8 @@ This project implements a **Stack** data structure that supports the following o
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/ieee-submission.git
-cd ieee-submission
+git clone https://github.com/wizard-28/ieee-submission-round-2.git
+cd ieee-submission-round-2
 
 # Install dependencies
 poetry install
