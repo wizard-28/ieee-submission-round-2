@@ -4,6 +4,8 @@
 
 ## 📌 Project Overview
 
+![assets/stack_bench.png](assets/running.png)
+
 This project implements a **Stack** data structure that supports the following operations in **O(1) time complexity** and **O(n) space complexity**:
 
 - `push(x)`: Pushes element `x` onto the stack.
